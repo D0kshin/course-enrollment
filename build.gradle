@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+application{
+    mainClass="ru.ac.uniyar.testingcourse.Main"
+}
+
+
+group 'ru.ac.uniyar.testingcourse'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation('org.mariadb.jdbc:mariadb-java-client:3.1.4')
+    testImplementation(platform('org.junit:junit-bom:5.9.2'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation('org.assertj:assertj-core:3.24.2')
+    implementation("org.javalite:activejdbc:3.4-j11")
+    implementation("mysql:mysql-connector-java:5.1.34")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
+}
+
+tasks.withType(Test) {
+	systemProperty "file.encoding", "UTF-8"
+}
+
+javadoc {
+    options.encoding = 'UTF-8'
+}
+
